@@ -39,8 +39,15 @@ module Itemable
             through: :item_children,
             source: :child,
             source_type: association_name.to_s.classify
-          }
-          has_many association_name, default_options.merge(options.symbolize_keys)
+          }.merge(options.symbolize_keys)
+          if default_options[:dependent] == :destroy
+            before_destroy prepend: true do
+              send(association_name).each do |rec|
+                rec.destroy
+              end
+            end
+          end
+          has_many association_name, default_options
         end
       end
     end
@@ -53,8 +60,14 @@ module Itemable
             through: :item_child,
             source: :child,
             source_type: association_name.to_s.classify
-          }
-          has_one association_name, default_options.merge(options.symbolize_keys)
+          }.merge(options.symbolize_keys)
+          if default_options[:dependent] == :destroy
+            before_destroy prepend: true do
+              rec = send(association_name)
+              rec.destroy if rec
+            end
+          end
+          has_one association_name, default_options
         end
       end
     end

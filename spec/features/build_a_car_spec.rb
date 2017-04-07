@@ -41,4 +41,15 @@ RSpec.describe 'Build a Car' do
       expect(wheel.item_children.count).to eq 1
     end
   end
+
+  context 'Destroy Car, Wheel and Chair won\'t be destroied' do
+    before do
+      car.destroy
+    end
+    it { expect(Car.count).to eq 0 }
+    it { expect(Wheel.count).to eq 0 }
+    it { expect(Chair.count).to eq 3 }
+    it { expect(Tyre.count).to eq 0 }
+    it { expect(Screw.count).to eq 0 }
+  end
 end
