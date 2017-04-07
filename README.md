@@ -1,4 +1,4 @@
-# Itemable
+# Itemable [![Build Status](https://travis-ci.org/xiaohui-zhangxh/itemable.svg?branch=master)](https://travis-ci.org/xiaohui-zhangxh/itemable) [![Gem Version](https://badge.fury.io/rb/itemable.svg)](https://badge.fury.io/rb/itemable)
 
 Make your ActiveRecord model as a item, it can be child or parent of self-modle or other-model
 
