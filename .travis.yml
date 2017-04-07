@@ -1,5 +1,7 @@
 language: ruby
+cache:
+  - bundler
+  - apt
 rvm:
   - 2.2.5
-  - 2.3.3
   - ruby-head
